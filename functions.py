@@ -1,7 +1,28 @@
 import sqlite3 as sq
+import random
 
-def CreateDB(naam):
-    con = sq.connect(naam)
-    cur = con.cursor
-    con_cur = [con,cur]
-    return con_cur
+def AddToDB(naamDB, link):
+    con = sq.connect(naamDB)
+    cur = con.cursor()
+    
+    cur.execute("CREATE TABLE IF NOT EXISTS URLS (FULLURL TEXT, SHORTURL TEXT)")
+    con.commit()
+
+    rand_link = ''
+    while True:
+        rand_link = GenRandLink()
+        result = cur.execute('SELECT FULLURL FROM URLS WHERE SHORTURL = ?', (rand_link,)).fetchone()
+        if not result:
+            break
+    
+    cur.execute("INSERT INTO URLS VALUES (?, ?)", (link, rand_link))
+    con.commit()
+    con.close()
+
+
+
+def GenRandLink():
+    r_url = ""
+    for x in range(4):
+        r_url += chr(random.randint(97,122))
+    return r_url

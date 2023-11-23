@@ -11,5 +11,6 @@ def home():
     global my_url
     if request.method == 'POST':
         my_url.link = request.form["URL"]
+        f.AddToDB("URL_DATA",my_url.link)
     return render_template('home.html', mijn_link = str(my_url.link))
 
