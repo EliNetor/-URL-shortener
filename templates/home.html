@@ -16,16 +16,16 @@
     </form>
 
     <p>To use your short url find the prefix in the list below and write it after the url of this site seperated by a '/'</p>
-    <table border=1 frame=hsides rules=columns>
+    <table border=1 frame=hsides rules=columns style="border-collapse: collapse;">
         <thead>
-            <th>Full URLS</th>
-            <th>Url prefix, thissite/xxxx</th>
+            <th style="padding: 10px;">Full URLS</th>
+            <th style="padding: 10px;">Url prefix</th>
         </thead>
         <tbody>
             {% for item in data %}
             <tr>
-                <td>{{item[0]}}</td>
-                <td>{{item[1]}}</td>       
+                <td style="background-color:cornsilk; text-align: center;padding: 10px;">{{item[0]}}</td>
+                <td style="background-color: aqua; text-align: center;padding: 10px;">{{item[1]}}</td>       
             </tr>
             {% endfor %}
         </tbody>
