@@ -14,7 +14,13 @@ def home():
     if request.method == 'POST':
         my_url.link = request.form["URL"]
         f.AddToDB("URL_DATA",my_url.link)
-    return render_template('home.html', mijn_link = str(my_url.link))
+
+    con = sqlite3.connect("URL_DATA") 
+    cur = con.cursor()
+    cur.execute("SELECT * FROM URLS")
+    data = cur.fetchall()
+
+    return render_template('home.html', data=data)
 
 #Check if the link has a match in the db and redirects to set link that coresponds with it
 @app.route('/<short_url>')

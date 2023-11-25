@@ -15,6 +15,20 @@
         <input type="submit" value="Verzenden">
     </form>
 
-    <p>{{ mijn_link }}</p>
+    <p>To use your short url find the prefix in the list below and write it after the url of this site seperated by a '/'</p>
+    <table border=1 frame=hsides rules=columns>
+        <thead>
+            <th>Full URLS</th>
+            <th>Url prefix, thissite/xxxx</th>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>       
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
