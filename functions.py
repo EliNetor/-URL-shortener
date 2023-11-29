@@ -1,5 +1,8 @@
 import sqlite3 as sq
 import random
+import logging
+
+logging.basicConfig(filename='logs.log', encoding='utf-8', level=logging.DEBUG)
 
 def AddToDB(naamDB, link):
     con = sq.connect(naamDB)
@@ -17,6 +20,7 @@ def AddToDB(naamDB, link):
             break
     
     cur.execute("INSERT INTO URLS VALUES (?, ?)", (link, rand_link))
+    logging.info(f"Url added: {link}, with short prefix: {rand_link}")
     con.commit()
     con.close()
 

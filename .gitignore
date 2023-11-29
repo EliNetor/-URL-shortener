@@ -1,3 +1,4 @@
 .venv
 __pycache__
 URL_DATA
+logs.log

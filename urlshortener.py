@@ -3,6 +3,9 @@ from flask import Flask, request, redirect, render_template
 import classes
 import sqlite3
 from collections import OrderedDict
+import logging
+
+logging.basicConfig(filename='logs.log', encoding='utf-8', level=logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -51,7 +54,8 @@ def redirect_to_full_url(short_url):
 
     if url:
         full_url = url[0]
-        add_to_cache(url)
+        logging.info(f"Url visited: {full_url}")
+        add_to_cache(full_url)
         return redirect(full_url)
     else:
         return "Short URL not found", 404
