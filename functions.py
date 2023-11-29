@@ -12,6 +12,7 @@ def AddToDB(naamDB, link):
     while True:
         rand_link = GenRandLink()
         result = cur.execute('SELECT FULLURL FROM URLS WHERE SHORTURL = ?', (rand_link,)).fetchone()
+        result = cur.execute('SELECT SHORTURL FROM URLS WHERE FULLURL = ?', (link,)).fetchone()
         if not result:
             break
     

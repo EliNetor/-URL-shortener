@@ -17,6 +17,7 @@ def home():
 
     con = sqlite3.connect("URL_DATA") 
     cur = con.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS URLS (`FULLURL`, `SHORTURL`)")
     cur.execute("SELECT * FROM URLS")
     data = cur.fetchall()
 
