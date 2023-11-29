@@ -54,7 +54,7 @@ def redirect_to_full_url(short_url):
 
     if url:
         full_url = url[0]
-        logging.info(f"Url visited: {full_url}")
+        logging.info(f"Url redirected: {full_url}")
         add_to_cache(full_url)
         return redirect(full_url)
     else:
