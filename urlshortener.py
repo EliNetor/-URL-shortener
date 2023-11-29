@@ -1,5 +1,5 @@
 import functions as f
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, url_for
 import classes
 import sqlite3
 from collections import OrderedDict
@@ -42,7 +42,9 @@ def home():
     cur.execute("SELECT * FROM URLS")
     data = cur.fetchall()
 
-    return render_template('home.html', data=data)
+    css_url = url_for('static', filename='style.css')
+
+    return render_template('home.html', data=data, css_url=css_url)
 
 #Check if the link has a match in the db and redirects to set link that coresponds with it
 @app.route('/<short_url>')

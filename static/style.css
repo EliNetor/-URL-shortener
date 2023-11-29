@@ -1,0 +1,28 @@
+body{
+    background-color: #F3E5AB;
+    text-align: center;
+}
+
+.Input_Field{
+    display: inline-block;
+    border: 4px solid #ffdd00;
+    background-color: #fffbe9;
+    text-align: center;
+    padding: 5px;
+    border-radius: 20%;
+}
+
+input{
+    margin-top: 4px;
+}
+
+table{
+    margin:auto;
+    border:4px solid #ffdd00;
+}
+p{
+    background-color: #fff47c;
+    display: inline-block;
+    padding: 2px;
+    border: 4px solid #ffdd00;
+}
