@@ -2,10 +2,28 @@ import functions as f
 from flask import Flask, request, redirect, render_template
 import classes
 import sqlite3
+from collections import OrderedDict
 
 app = Flask(__name__)
 
 my_url = classes.url()
+
+#function that caches the last 500 urls that are looked up, oldest first newest get added at the end
+def cache(og_func):
+
+    urls = OrderedDict()
+
+    def wrapper(url):
+        if url not in urls:
+            urls[url] = None
+        else:
+            urls.move_to_end(url, last=True)
+        
+        if len(urls) > 500:
+            urls.popitem(last=False)
+            
+        return urls
+    return wrapper
 
 #Displays main page with an imput field to write a link in that should be shortened
 @app.route('/', methods=['GET', 'POST'])
@@ -33,6 +51,11 @@ def redirect_to_full_url(short_url):
 
     if url:
         full_url = url[0]
+        add_to_cache(url)
         return redirect(full_url)
     else:
         return "Short URL not found", 404
+
+@cache
+def add_to_cache(url):
+    pass
